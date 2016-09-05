@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ch.supsi.dti.ssiot2016.shimmer.MainActivity;
+
 public abstract class BaseTabFragment extends Fragment {
 
     /**
@@ -24,6 +26,11 @@ public abstract class BaseTabFragment extends Fragment {
      * The resource id of the layout
      */
     private int mResourceId;
+
+    /**
+     * The main activity
+     */
+    protected MainActivity mActivity;
 
     /**
      * New instance
@@ -63,6 +70,7 @@ public abstract class BaseTabFragment extends Fragment {
 
         mFragmentId = getArguments().getInt(EXTRA_FRAGMENT_ID);
         mResourceId = getArguments().getInt(EXTRA_RESOURCE_ID);
+        mActivity   = (MainActivity) getActivity();
 
         View view = inflater.inflate(mResourceId, container, false);
         initMembers();
@@ -83,4 +91,13 @@ public abstract class BaseTabFragment extends Fragment {
      * @param rootView the main view
      */
     public abstract void initViews(View rootView);
+
+    /**
+     * Method used send notification to fragments
+     * @param what which type of notification
+     * @param data related data
+     */
+    public void notification(int what, Object data){
+        Log.d(getClass().getSimpleName(), "notification: what = " + what + " data = " + data);
+    }
 }

@@ -1,8 +1,13 @@
 package ch.supsi.dti.ssiot2016.shimmer;
 
+import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +29,21 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final int REQUEST_ENABLE_BT = 0x100;
 
+    /**
+     * Service used to connect and grab data from a Shimmer sensor
+     */
+    private MyService mShimmerService;
+
+    /**
+     * Flag that indicates if the service is correctly binded
+     */
+    private boolean mShimmerServiceBind;
+
+    /**
+     * PagerAdapter, it's a fragments holder
+     */
+    private TabsFragmentPagerAdapter mPagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
          * Get the ViewPager and sets the PagerAdapter
          */
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        final TabsFragmentPagerAdapter mPagerAdapter = new TabsFragmentPagerAdapter(getSupportFragmentManager(), this);
+        mPagerAdapter = new TabsFragmentPagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(mPagerAdapter);
         mPagerAdapter.setup(viewPager, (TabLayout) findViewById(R.id.tablayout));
 
@@ -67,9 +87,13 @@ public class MainActivity extends AppCompatActivity {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
-        else {
-            setup();
-        }
+
+        /**
+         * Starts the shimmer service
+         */
+        Intent startIntent = new Intent(this, MyService.class);
+        startIntent.setAction(MyService.ACTION_START);
+        startService(startIntent);
     }
 
     @Override
@@ -80,10 +104,7 @@ public class MainActivity extends AppCompatActivity {
          */
         if (requestCode == REQUEST_ENABLE_BT){
 
-            if (resultCode == RESULT_OK){ // bluetooth enabled correctly
-                setup();
-            }
-            else { // something went wrong, i.e, the user pressed "No"
+            if (resultCode != RESULT_OK){ // something went wrong, i.e, the user pressed "No"
 
                 // show a dialog...
                 new AlertDialog.Builder(this)
@@ -95,10 +116,78 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Sets up Shimmer service
-     */
-    private void setup(){
-        Log.d(TAG, "setup()");
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+        Log.d(TAG, "onStart()");
+
+        Intent intent = new Intent(this, MyService.class);
+
+        getApplicationContext().bindService(intent, mShimmerServiceConnection, Context.BIND_AUTO_CREATE);
+
+        if (isShimmerServiceRunning()) {
+            Log.d(TAG,"Shimmer service started!");
+        }
+        else {
+            Log.d(TAG, "Shimmer service not started!");
+        }
     }
+
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+
+        if (mShimmerServiceBind){
+            getApplicationContext().unbindService(mShimmerServiceConnection);
+        }
+    }
+
+    /**
+     * Gets the shimmer service
+     * @return a MyService object
+     */
+    public MyService getShimmerService() {
+        return mShimmerService;
+    }
+
+    /**
+     * Checks if the service is currently running or not
+     * @return <code>true</code> if it is running, otherwise <code>false</code>
+     */
+    protected boolean isShimmerServiceRunning() {
+
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+
+            if (MyService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected ServiceConnection mShimmerServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+
+            Log.d(TAG, "---> ServiceConnection#onServiceConnected()");
+
+            MyService.LocalBinder binder = (MyService.LocalBinder) iBinder;
+            mShimmerService = binder.getService();
+            mShimmerServiceBind = true;
+            mPagerAdapter.notifyAllFragments(MyService.NOTIFY_SERVICE_STARTED);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+            Log.d(TAG, "---> ServiceConnection#onServiceDisconnected()");
+            mShimmerServiceBind = false;
+        }
+    };
 }

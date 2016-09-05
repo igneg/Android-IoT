@@ -15,6 +15,13 @@
     <string name="pair_change_sensor_text">Change Sensor</string>
     <string name="fragment_shimmer_connect">Connect</string>
     <string name="fragment_shimmer_disconnect">Disconnect</string>
+    <string name="state_none">Not Connected</string>
+    <string name="state_connecting">Connecting&#8230;</string>
+    <string name="state_connecting_attempts">Connecting, attempt %1$d of %2$d</string>
+    <string name="state_connected">Connected</string>
+    <string name="state_initialized">Fully Initialized</string>
+    <string name="state_streaming">Streaming data&#8230;</string>
+    <string name="state_stop_streaming">Connected</string>
 
     <!-- Devices List Fragment -->
     <string name="devices_list_paired_devices">Paired Devices</string>

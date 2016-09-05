@@ -139,4 +139,43 @@ public class TabsFragmentPagerAdapter extends FragmentPagerAdapter {
             tabLayout.getTabAt(i).setCustomView(this.getTabView(i));
         }
     }
+
+    /**
+     * Notify a fragment
+     * @param position
+     * @param what
+     * @param data
+     */
+    public void notifyFragment(int position, int what, Object data){
+        mFragments.get(position).notification(what, data);
+    }
+
+    /**
+     *
+     * @param position
+     * @param what
+     */
+    public void notifyFragment(int position, int what){
+        notifyFragment(position, what, null);
+    }
+
+    /**
+     *
+     * @param what
+     * @param data
+     */
+    public void notifyAllFragments(int what, Object data){
+
+        for (BaseTabFragment fragment : mFragments){
+            fragment.notification(what, data);
+        }
+    }
+
+    /**
+     *
+     * @param what
+     */
+    public void notifyAllFragments(int what){
+        notifyAllFragments(what, null);
+    }
 }
