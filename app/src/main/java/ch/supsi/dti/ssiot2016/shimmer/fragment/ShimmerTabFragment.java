@@ -261,6 +261,11 @@ public class ShimmerTabFragment extends BaseTabFragment implements DevicesListFr
 
                     break;
 
+                case MyService.MESSAGE_NEW_DATA:
+                    mActivity.notifyNewData(msg.obj);
+
+                    break;
+
                 default:
                     break;
             }

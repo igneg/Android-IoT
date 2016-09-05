@@ -190,4 +190,8 @@ public class MainActivity extends AppCompatActivity {
             mShimmerServiceBind = false;
         }
     };
+
+    public void notifyNewData(Object data) {
+        mPagerAdapter.notifyFragment(1, MyService.MESSAGE_NEW_DATA, data);
+    }
 }

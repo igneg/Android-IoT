@@ -23,7 +23,14 @@
     <string name="state_streaming">Streaming data&#8230;</string>
     <string name="state_stop_streaming">Connected</string>
 
+    <!-- Data Tab Fragment -->
+    <string name="data_timestamp">Timestamp:</string>
+    <string name="data_accelerometer_z">Accelerometer Z:</string>
+    <string name="data_accelerometer_y">Accelerometer Y:</string>
+    <string name="data_accelerometer_x">Accelerometer X:</string>
+
     <!-- Devices List Fragment -->
     <string name="devices_list_paired_devices">Paired Devices</string>
+
 
 </resources>

@@ -5,7 +5,7 @@
 
     <string-array name="tabs_classes">
         <item>ShimmerTabFragment</item>
-        <item>EmptyTabFragment</item>
+        <item>DataTabFragment</item>
     </string-array>
 
     <string-array name="tabs_titles">

@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.shimmerresearch.android.Shimmer;
 import com.shimmerresearch.driver.ObjectCluster;
 
-import java.util.Arrays;
-
 import ch.supsi.dti.ssiot2016.shimmer.util.AttemptsData;
 
 public class MyService extends Service {
@@ -37,6 +35,7 @@ public class MyService extends Service {
     public static final String ACTION_MAIN             = "ForegroundService.Main";
     public static final int SERVICE_NOTIFICATION       = 300;
     public static final int MESSAGE_CONNECTION_ATTEMPT = 600;
+    public static final int MESSAGE_NEW_DATA           = 700;
     public static final int NOTIFY_SERVICE_STARTED     = 200;
     public static final int CONNECTION_ATTEMPTS        = 5;
 
@@ -176,7 +175,7 @@ public class MyService extends Service {
         @Override
         public void handleMessage(Message msg) {
 
-            Log.d(TAG, "mHandler#handleMessage(): what = " + msg.what + " arg1 = " + msg.arg1 + " arg2 = " + msg.arg2 + " obj = " + msg.obj);
+            // Log.d(TAG, "mHandler#handleMessage(): what = " + msg.what + " arg1 = " + msg.arg1 + " arg2 = " + msg.arg2 + " obj = " + msg.obj);
 
             switch (msg.what){
 
@@ -245,8 +244,9 @@ public class MyService extends Service {
                     // within each msg an object can be include, object clusters are used to represent the data structure of the shimmer device
                     if ((msg.obj instanceof ObjectCluster)) {
 
-                        ObjectCluster c = (ObjectCluster) msg.obj;
-                        Log.i(TAG, "New data --> " + Arrays.toString(c.mCalData));
+//                        ObjectCluster c = (ObjectCluster) msg.obj;
+//                        Log.i(TAG, "New data --> " + Arrays.toString(c.mCalData));
+                        mServiceHandler.obtainMessage(MESSAGE_NEW_DATA, 0, 0, msg.obj).sendToTarget();
                     }
 
                     break;
