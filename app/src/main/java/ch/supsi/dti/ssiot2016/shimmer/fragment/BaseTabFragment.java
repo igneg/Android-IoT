@@ -72,14 +72,14 @@ public abstract class BaseTabFragment extends Fragment {
     }
 
     /**
-     * Method used to initialize member fields of the subclasses
+     * Method used to initialize member fields
      */
     public void initMembers() {
         Log.d(getClass().getSimpleName(), "initMembers()");
     }
 
     /**
-     * Method used to initialize views of the subclasses
+     * Method used to initialize views
      * @param rootView the main view
      */
     public abstract void initViews(View rootView);

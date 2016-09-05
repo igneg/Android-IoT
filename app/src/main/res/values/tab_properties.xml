@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="tabs_package">ch.supsi.dti.ssiot2016.shimmer</string>
+    <string name="tabs_package">ch.supsi.dti.ssiot2016.shimmer.fragment</string>
 
     <string-array name="tabs_classes">
-        <item>EmptyTabFragment</item>
+        <item>ShimmerTabFragment</item>
         <item>EmptyTabFragment</item>
     </string-array>
 
@@ -14,7 +14,7 @@
     </string-array>
 
     <integer-array name="tabs_icons">
-        <item>@drawable/ic_settings</item>
+        <item>@drawable/ic_bluetooth</item>
         <item>@drawable/ic_developer_board_white_48dp</item>
     </integer-array>
 

@@ -68,7 +68,7 @@ public class TabsFragmentPagerAdapter extends FragmentPagerAdapter {
     public TabsFragmentPagerAdapter(FragmentManager fm, Context context) {
 
         super(fm);
-        this.mContext = context;
+        this.mContext   = context;
         this.mFragments = new ArrayList<>();
 
         // tabs
@@ -98,7 +98,6 @@ public class TabsFragmentPagerAdapter extends FragmentPagerAdapter {
 
             fragment = BaseTabFragment.newInstance(position);
             Log.e(TAG, "----> unable to load class: " + mTabsClasses[position]);
-
         }
 
         mFragments.add(fragment);
