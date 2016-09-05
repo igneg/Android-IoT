@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer.activity;
+package ch.supsi.dti.ssiot2016.shimmer;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
-import ch.supsi.dti.ssiot2016.shimmer.R;
 import ch.supsi.dti.ssiot2016.shimmer.adapter.TabsFragmentPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -89,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 // show a dialog...
                 new AlertDialog.Builder(this)
                         .setTitle(BluetoothAdapter.class.getSimpleName())
-                        .setMessage(getString(R.string.bluetooth_no_adapter))
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setMessage(getString(R.string.bluetooth_not_granted))
+                        .setIcon(android.R.drawable.ic_dialog_info)
                         .show();
             }
         }

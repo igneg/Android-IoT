@@ -7,4 +7,8 @@
     <!-- Tabs -->
     <dimen name="tabs_height">65dp</dimen>
 
+    <!-- Shimmer Tab Fragment -->
+    <dimen name="fragment_shimmer_button_width">150dp</dimen>
+    <dimen name="fragment_shimmer_image_height">200dp</dimen>
+
 </resources>

@@ -14,7 +14,7 @@
     </string-array>
 
     <integer-array name="tabs_icons">
-        <item>@drawable/ic_bluetooth</item>
+        <item>@android:drawable/ic_dialog_info</item>
         <item>@drawable/ic_developer_board_white_48dp</item>
     </integer-array>
 

@@ -12,5 +12,11 @@
     <!-- Shimmer Tab -->
     <string name="pair_no_sensor_selected">No sensor selected&#8230;</string>
     <string name="pair_select_sensor_text">Select Sensor</string>
+    <string name="pair_change_sensor_text">Change Sensor</string>
+    <string name="fragment_shimmer_connect">Connect</string>
+    <string name="fragment_shimmer_disconnect">Disconnect</string>
+
+    <!-- Devices List Fragment -->
+    <string name="devices_list_paired_devices">Paired Devices</string>
 
 </resources>

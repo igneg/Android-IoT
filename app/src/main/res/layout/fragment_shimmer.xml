@@ -5,34 +5,64 @@
               android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:id="@+id/emptyContainer">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/pair_no_sensor_selected"
-            android:id="@+id/tvNoSensorSelected"
-            android:layout_marginBottom="@dimen/default_margin"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pair_select_sensor_text"
-            android:id="@+id/btnSelectSensor"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:id="@+id/fullContainer"
+        android:visibility="visible"
+        android:id="@+id/selectedContainer"
         android:contextClickable="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fragment_shimmer_image_height"
+            android:id="@+id/ivShimmer"
+            android:src="@drawable/ic_shimmer"
+            android:contentDescription="@string/image_description"
+            android:scaleType="fitCenter"/>
+
+        <TextView android:id="@+id/tvDeviceName"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?attr/textAppearanceListItem"
+                  android:textStyle="bold"
+                  android:textSize="19sp"
+                  android:layout_marginTop="@dimen/default_margin"
+                  android:layout_marginLeft="@dimen/default_margin"
+                  android:layout_marginRight="@dimen/default_margin"
+                  android:text="DeviceName"
+                  android:textAlignment="center"/>
+
+        <TextView android:id="@+id/tvDeviceAddress"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_marginBottom="@dimen/default_margin"
+                  android:layout_marginRight="@dimen/default_margin"
+                  android:layout_marginLeft="@dimen/default_margin"
+                  android:text="DeviceAddress"
+                  android:textAlignment="center"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="@dimen/fragment_shimmer_button_width"
+                android:layout_height="wrap_content"
+                android:text="@string/pair_select_sensor_text"
+                android:id="@+id/btnSelectSensor"
+                android:enabled="true"/>
+
+            <Button
+                android:layout_width="@dimen/fragment_shimmer_button_width"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_shimmer_connect"
+                android:id="@+id/btnConnectDisconnect"/>
+        </LinearLayout>
 
     </LinearLayout>
 
