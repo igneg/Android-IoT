@@ -76,5 +76,35 @@ public class DataTabFragment extends  BaseTabFragment{
             tvYValue.setText(String.format(format, data[2]));
             tvZValue.setText(String.format(format, data[3]));
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

@@ -29,6 +29,9 @@
     <string name="data_accelerometer_y">Accelerometer Y:</string>
     <string name="data_accelerometer_x">Accelerometer X:</string>
 
+    <!-- Stetho Demo Tab Fragment -->
+    <string name="stetho_send_request">Send Request</string>
+
     <!-- Devices List Fragment -->
     <string name="devices_list_paired_devices">Paired Devices</string>
 
