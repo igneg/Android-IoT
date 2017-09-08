@@ -37,15 +37,7 @@
  */
 
 
-
 package com.shimmerresearch.tools;
-
-import android.os.Environment;
-import android.util.Log;
-
-import com.google.common.collect.Multimap;
-import com.shimmerresearch.driver.FormatCluster;
-import com.shimmerresearch.driver.ObjectCluster;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -53,6 +45,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
+
+import android.os.Environment;
+import android.util.Log;
+
+import com.google.common.collect.Multimap;
+import com.shimmerresearch.driver.FormatCluster;
+import com.shimmerresearch.driver.ObjectCluster;
 
 
 public class Logging {
@@ -75,7 +74,7 @@ public class Logging {
 		outputFile = new File(root, mFileName+".dat");
 	}
 	
-	public Logging(String myName, String delimiter){
+	public Logging(String myName,String delimiter){
 		mFileName=myName;
 		mDelimiter=delimiter;
 		File root = Environment.getExternalStorageDirectory();
@@ -88,7 +87,7 @@ public class Logging {
 	 * @param delimiter
 	 * @param folderName will create a new folder if it does not exist
 	 */
-	public Logging(String myName, String delimiter, String folderName){
+	public Logging(String myName,String delimiter, String folderName){
 		mFileName=myName;
 		mDelimiter=delimiter;
 
@@ -104,7 +103,7 @@ public class Logging {
 	
 	/**
 	 * This function takes an object cluster and logs all the data within it. User should note that the function will write over prior files with the same name.
-	 * @param objectCluster data which will be written into the file
+	 * @param objectClusterLog data which will be written into the file
 	 */
 	public void logData(ObjectCluster objectCluster){
 		ObjectCluster objectClusterLog = objectCluster;
@@ -185,7 +184,7 @@ public class Logging {
 			
 			//now write data
 			for (int r=0;r<mSensorNames.length;r++) {
-				Collection<FormatCluster> dataFormats = objectClusterLog.mPropertyCluster.get(mSensorNames[r]);
+				Collection<FormatCluster> dataFormats = objectClusterLog.mPropertyCluster.get(mSensorNames[r]);  
 				FormatCluster formatCluster = (FormatCluster) returnFormatCluster(dataFormats,mSensorFormats[r],mSensorUnits[r]);  // retrieve the calibrated data
 //				Log.d("Shimmer","Data : " +mSensorNames[r] + formatCluster.mData + " "+ formatCluster.mUnits);
 				writer.write(Double.toString(formatCluster.mData));
@@ -198,7 +197,7 @@ public class Logging {
 	catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-		Log.d("Shimmer", "Error with bufferedwriter");
+		Log.d("Shimmer","Error with bufferedwriter");
 	}
 	}
 	

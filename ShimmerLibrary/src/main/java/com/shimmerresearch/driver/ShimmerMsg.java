@@ -1,4 +1,5 @@
 package com.shimmerresearch.driver;
+
 public class ShimmerMsg {
 	public int mIdentifier;
 	public Object mB;

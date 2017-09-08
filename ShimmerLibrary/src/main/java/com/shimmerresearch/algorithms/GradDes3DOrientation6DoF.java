@@ -1,5 +1,4 @@
 package com.shimmerresearch.algorithms;
-
 /* Rev 0.1
  * 
  * Madgwick, Sebastian OH, Andrew JL Harrison, and Ravi Vaidyanathan. "Estimation of imu and marg orientation using a gradient descent algorithm." Rehabilitation Robotics (ICORR), 2011 IEEE International Conference on. IEEE, 2011.
@@ -77,6 +76,17 @@ package com.shimmerresearch.algorithms;
  * @author Jong Chern Lim
  * @date   October, 2013
  */
+
+import javax.vecmath.AxisAngle4d;
+import javax.vecmath.Matrix4d;
+import javax.vecmath.Quat4d;
+import javax.vecmath.Tuple3d;
+import javax.vecmath.Vector3d;
+import javax.vecmath.Vector3f;
+import javax.vecmath.Vector4d;
+import javax.vecmath.Vector4f;
+
+import com.shimmerresearch.algorithms.GradDes3DOrientation.Quaternion;
 
 public class GradDes3DOrientation6DoF {
 

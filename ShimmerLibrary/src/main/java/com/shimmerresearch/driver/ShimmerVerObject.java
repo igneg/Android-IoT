@@ -1,5 +1,9 @@
 package com.shimmerresearch.driver;
+
 import java.io.Serializable;
+
+import com.shimmerresearch.driver.ShimmerVerDetails.HW_ID;
+import com.shimmerresearch.driver.ShimmerVerDetails.FW_ID;
 
 /**
  * Holds HW, FW and expansion board infomation. Used for docked Shimmers current
@@ -99,13 +103,13 @@ public class ShimmerVerObject implements Serializable {
 			mHardwareVersionParsed = "Unknown";
 		}
 
-		if (mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.BOILER_PLATE) {
+		if (mFirmwareIdentifier == FW_ID.SHIMMER3.BOILER_PLATE) {
 			mFirmwareIdentifierParsed = "Boilerplate";
-		} else if (mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.BTSTREAM) {
+		} else if (mFirmwareIdentifier == FW_ID.SHIMMER3.BTSTREAM) {
 			mFirmwareIdentifierParsed = "BtStream";
 
 			if ((mFirmwareVersionMajor == 0 && mFirmwareVersionMinor == 1)
-					|| (mFirmwareVersionMajor == 1 && mFirmwareVersionMinor == 2 && mHardwareVersion == ShimmerVerDetails.HW_ID.SHIMMER_2R))
+					|| (mFirmwareVersionMajor == 1 && mFirmwareVersionMinor == 2 && mHardwareVersion == HW_ID.SHIMMER_2R))
 				mFirmwareVersionCode = 1;
 			else if (mFirmwareVersionMajor == 0 && mFirmwareVersionMinor == 2)
 				mFirmwareVersionCode = 2;
@@ -117,7 +121,7 @@ public class ShimmerVerObject implements Serializable {
 				// if(mFirmwareVersionMajor==0 && mFirmwareVersionMinor==5)
 				mFirmwareVersionCode = 5;
 
-		} else if (mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.SDLOG) {
+		} else if (mFirmwareIdentifier == FW_ID.SHIMMER3.SDLOG) {
 			mFirmwareIdentifierParsed = "SDLog";
 
 			// TODO
@@ -130,7 +134,7 @@ public class ShimmerVerObject implements Serializable {
 			// else if(mFirmwareVersionMajor==0 && mFirmwareVersionMinor==3)
 			// mFirmwareVersionCode = 5;
 
-		} else if (mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.LOGANDSTREAM) {
+		} else if (mFirmwareIdentifier == FW_ID.SHIMMER3.LOGANDSTREAM) {
 			mFirmwareIdentifierParsed = "LogAndStream";
 
 			if (mFirmwareVersionMajor == 0 && mFirmwareVersionMinor == 1)
@@ -140,7 +144,7 @@ public class ShimmerVerObject implements Serializable {
 			else
 				// if(mFirmwareVersionMajor==0 && mFirmwareVersionMinor==3)
 				mFirmwareVersionCode = 5;
-		} else if (mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.GQ_GSR) {
+		} else if (mFirmwareIdentifier == FW_ID.SHIMMER3.GQ_GSR) {
 			mFirmwareIdentifierParsed = "GQ GSR";
 
 			// TODO

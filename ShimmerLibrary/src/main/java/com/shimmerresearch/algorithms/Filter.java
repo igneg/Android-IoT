@@ -3,7 +3,7 @@
 
  This is a BlackMan-Windowed-Sinc Filter. Algorithm for calculating 
  filter coefficients from "The Scientist and Engineer's Guide to Digital Signal Processing",
- copyright �1997-1998 by Steven W. Smith. 
+ copyright 1997-1998 by Steven W. Smith.
  For more information visit the book's website at: www.DSPguide.com.
  
  * Copyright (c) 2010 - 2014, Shimmer Research, Ltd.
@@ -61,7 +61,7 @@ import java.util.List;
  *
  This is a BlackMan-Windowed-Sinc Filter. Algorithm for calculating 
  filter coefficients from "The Scientist and Engineer's Guide to Digital Signal Processing",
- copyright �1997-1998 by Steven W. Smith. 
+ copyright 1997-1998 by Steven W. Smith.
  For more information visit the book's website at: www.DSPguide.com.
  *
  */

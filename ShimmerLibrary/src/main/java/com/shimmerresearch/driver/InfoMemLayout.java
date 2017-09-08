@@ -1,4 +1,7 @@
 package com.shimmerresearch.driver;
+
+import com.shimmerresearch.driver.ShimmerVerDetails.FW_ID;
+
 /**
  * Hold the Shimmer3's microcontroller information memory layout. This region of
  * the the microcontrollers RAM can be used to configure all properties of the
@@ -450,8 +453,8 @@ public class InfoMemLayout {
 		//Include changes to mapping below in order of oldest to newest in 
 		//seperate "if statements"
 		
-		if((Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal, ShimmerVerDetails.FW_ID.SHIMMER3.SDLOG,0,8,42))
-				||(Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal, ShimmerVerDetails.FW_ID.SHIMMER3.LOGANDSTREAM,0,3,4))) {
+		if((Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal,FW_ID.SHIMMER3.SDLOG,0,8,42))
+				||(Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal,FW_ID.SHIMMER3.LOGANDSTREAM,0,3,4))) {
 			idxSensors3 =			128+0;
 			idxSensors4 =			128+1;
 			idxConfigSetupByte4 =	128+2;
@@ -462,9 +465,9 @@ public class InfoMemLayout {
 			idxDerivedSensors2 = 117;
 		}
 		
-		if((Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal, ShimmerVerDetails.FW_ID.SHIMMER3.SDLOG,0,8,68))
-				||(Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal, ShimmerVerDetails.FW_ID.SHIMMER3.LOGANDSTREAM,0,3,17))
-				||(Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal, ShimmerVerDetails.FW_ID.SHIMMER3.BTSTREAM,0,6,0))) {
+		if((Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal,FW_ID.SHIMMER3.SDLOG,0,8,68))
+				||(Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal,FW_ID.SHIMMER3.LOGANDSTREAM,0,3,17))
+				||(Util.compareVersions(mFirmwareIdentifier,mFirmwareVersionMajor,mFirmwareVersionMinor,mFirmwareVersionInternal,FW_ID.SHIMMER3.BTSTREAM,0,6,0))) {
 			idxDerivedSensors0 =		    31;
 			idxDerivedSensors1 =		    32;
 			idxDerivedSensors2 =		    33;
@@ -478,16 +481,16 @@ public class InfoMemLayout {
 	
 	public int calculateInfoMemByteLength(int mFirmwareIdentifier, int mFirmwareVersionMajor, int mFirmwareVersionMinor, int mFirmwareVersionRelease) {
 		//TODO: should add full FW version checking here to support different size InfoMems in the future
-		if(mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.SDLOG) {
+		if(mFirmwareIdentifier == FW_ID.SHIMMER3.SDLOG) {
 			return 384;
 		}
-		else if(mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.BTSTREAM) {
+		else if(mFirmwareIdentifier == FW_ID.SHIMMER3.BTSTREAM) {
 			return 128;
 		}
-		else if(mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.LOGANDSTREAM) {
+		else if(mFirmwareIdentifier == FW_ID.SHIMMER3.LOGANDSTREAM) {
 			return 384;
 		}
-		else if(mFirmwareIdentifier == ShimmerVerDetails.FW_ID.SHIMMER3.GQ_GSR) {
+		else if(mFirmwareIdentifier == FW_ID.SHIMMER3.GQ_GSR) {
 			return 128;
 		}
 		else {

@@ -1,4 +1,5 @@
 package com.shimmerresearch.driver;
+
 /**
  * Holds the Shimmer's Battery charging information (state, voltage and
  * percentage charge) received from communication with the Shimmer's UART.

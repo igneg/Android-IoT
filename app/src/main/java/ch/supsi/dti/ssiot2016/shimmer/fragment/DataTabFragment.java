@@ -58,7 +58,7 @@ public class DataTabFragment extends  BaseTabFragment{
         TextView tvYValue;
         TextView tvZValue;
 
-        public ViewHolder(View rootView){
+        ViewHolder(View rootView){
 
             tvTimestampValue = (TextView) rootView.findViewById(R.id.tvTimestampValue);
             tvXValue = (TextView) rootView.findViewById(R.id.tvXValue);
@@ -66,7 +66,7 @@ public class DataTabFragment extends  BaseTabFragment{
             tvZValue = (TextView) rootView.findViewById(R.id.tvZValue);
         }
 
-        public void displayObjectCluster(ObjectCluster cluster, boolean calibrated){
+        void displayObjectCluster(ObjectCluster cluster, boolean calibrated){
 
             double[] data = calibrated ? cluster.mCalData : cluster.mUncalData;
             String format = calibrated ? "%.3f m/s^2" : "%.3f";

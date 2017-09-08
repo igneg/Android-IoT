@@ -46,6 +46,7 @@
 
 
 package com.shimmerresearch.driver;
+
 public class Configuration {
 	//Channel Contents
 	public static class Shimmer3Gq{
@@ -59,6 +60,39 @@ public class Configuration {
 		public final static String[] ListofSamplingRateDividers={"0.75Hz","1.5Hz","3Hz","7.5Hz","15Hz","30Hz","75Hz","220Hz"};
 		public final static Integer[] ListofSamplingRateDividersValues={0,1,2,3,4,5,6,7};
 
+	}
+	public static class CHANNEL_UNITS{
+		//Sensors units
+		public static final String NO_UNITS = "no units";
+		public static final String MILLISECONDS = "ms";
+		public static final String METER_PER_SECOND_SQUARE = "m/(s^2)";
+		public static final String DEGREES_PER_SECOND = "deg/s";
+		public static final String LOCAL_FLUX = "local_flux";
+		public static final String KOHMS = "kOhms";
+		public static final String MILLIVOLTS = "mV";
+		public static final String BEATS_PER_MINUTE = "BPM";
+		public static final String KPASCAL = "kPa";
+		public static final String DEGREES_CELSUIS = "Degrees Celsius";
+		public static final String DEGREES = "Degrees";
+		public static final String U_TESLA = "uT";
+		public static final String DATE_FORMAT = "yyyy/mm/dd hh:mm:ss.000";
+		public static final String GRAVITY = "g";
+		public static final String CLOCK_UNIT = "Ticks";
+
+		public static final String ACCEL_CAL_UNIT = METER_PER_SECOND_SQUARE;
+		public static final String ACCEL_DEFAULT_CAL_UNIT = METER_PER_SECOND_SQUARE+"*";
+		public static final String GYRO_CAL_UNIT = DEGREES_PER_SECOND;
+		public static final String GYRO_DEFAULT_CAL_UNIT = DEGREES_PER_SECOND+"*";
+		public static final String MAG_CAL_UNIT = LOCAL_FLUX;
+		public static final String MAG_DEFAULT_CAL_UNIT = LOCAL_FLUX+"*";
+		
+		public static final String LOCAL = "local"; //used for axis-angle and madgewick quaternions
+	}	
+	
+	public static class CHANNEL_TYPE{
+		public static final String CAL = "CAL";
+		public static final String UNCAL = "UNCAL";
+		public static final String RAW = "RAW";
 	}
 	
 	public static class Shimmer3{
@@ -190,9 +224,9 @@ public class Configuration {
 
 		public final static String[] ListOfExGRespirationDetectFreq={"32 kHz","64 kHz"};
 		public final static Integer[] ListOfExGRespirationDetectFreqConfigValues={0,1};
-		public final static String[] ListOfExGRespirationDetectPhase32khz={"0�","11.25�","22.5�","33.75�","45�","56.25�","67.5�","78.75�","90�","101.25�","112.5�","123.75�","135�","146.25�","157.5�","168.75�"};
+		public final static String[] ListOfExGRespirationDetectPhase32khz={"0","11.25 ","22.5","33.75","45","56.25","67.5","78.75","90","101.25","112.5","123.75","135","146.25","157.5","168.75"};
 		public final static Integer[] ListOfExGRespirationDetectPhase32khzConfigValues={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-		public final static String[] ListOfExGRespirationDetectPhase64khz={"0�","22.5�","45�","67.5�","90�","112.5�","135�","157.5�"};
+		public final static String[] ListOfExGRespirationDetectPhase64khz={"0","22.5","45","67.5","90","112.5","135","157.5"};
 		public final static Integer[] ListOfExGRespirationDetectPhase64khzConfigValues={0,1,2,3,4,5,6,7};
 
 		public final static String[] ListOfExGRate={"125 Hz","250 Hz","500 Hz","1 kHz","2 kHz","4 kHz","8 kHz"};
@@ -467,6 +501,7 @@ public class Configuration {
 			public static  String BRIDGE_AMP_HIGH = "Bridge_Amp_High";
 			public static  String BRIDGE_AMP_LOW = "Bridge_Amp_Low";
 			public static  String GSR = "GSR";
+			public static  String GSR_CONDUCTANCE = "GSR_Conductance";
 			public static  String INT_EXP_A1 = "Int_Exp_A1";
 			public static  String RESISTANCE_AMP = "Resistance_Amp";
 			public static  String GYRO_X = "Gyro_X";

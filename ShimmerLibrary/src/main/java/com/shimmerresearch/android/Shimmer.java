@@ -132,6 +132,54 @@
 
 package com.shimmerresearch.android;
 
+import it.gerdavax.easybluetooth.BtSocket;
+import it.gerdavax.easybluetooth.LocalDevice;
+import it.gerdavax.easybluetooth.RemoteDevice;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Stack;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.UUID;
+
+
+
+
+
+
+
+
+import com.shimmerresearch.algorithms.GradDes3DOrientation;
+import com.shimmerresearch.bluetooth.ShimmerBluetooth;
+import com.shimmerresearch.driver.Configuration;
+import com.shimmerresearch.driver.ObjectCluster;
+import com.shimmerresearch.driver.ShimmerMsg;
+import com.shimmerresearch.driver.ShimmerObject;
+import com.shimmerresearch.driver.Configuration.Shimmer3;
+import com.shimmerresearch.driver.Configuration.Shimmer3.SensorBitmap;
+
+
+
+
+
+
+
+
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -140,23 +188,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-
-import com.shimmerresearch.bluetooth.ShimmerBluetooth;
-import com.shimmerresearch.driver.ObjectCluster;
-import com.shimmerresearch.driver.ShimmerMsg;
-
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.UUID;
-
-import it.gerdavax.easybluetooth.BtSocket;
-import it.gerdavax.easybluetooth.LocalDevice;
-import it.gerdavax.easybluetooth.RemoteDevice;
 //import java.io.FileOutputStream;
 
-public class Shimmer extends ShimmerBluetooth {
+public class Shimmer extends ShimmerBluetooth{
 	//generic UUID for serial port protocol
 	private UUID mSPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	// Message types sent from the Shimmer Handler
@@ -323,7 +357,7 @@ public class Shimmer extends ShimmerBluetooth {
 	 * @param setEnabledSensors Defines the sensors to be enabled (e.g. 'Shimmer.SENSOR_ACCEL|Shimmer.SENSOR_GYRO' enables the Accelerometer and Gyroscope)
 	 * @param countiousSync A boolean value defining whether received packets should be checked continuously for the correct start and end of packet.
 	 */
-	public Shimmer(Context context, Handler handler, String myName, double samplingRate, int accelRange, int gsrRange, long setEnabledSensors, boolean continousSync, boolean enableLowPowerAccel, boolean enableLowPowerGyro, boolean enableLowPowerMag, int gyroRange, int magRange, byte[] exg1, byte[] exg2) {
+	public Shimmer(Context context, Handler handler, String myName, double samplingRate, int accelRange, int gsrRange, long setEnabledSensors, boolean continousSync, boolean enableLowPowerAccel, boolean enableLowPowerGyro, boolean enableLowPowerMag, int gyroRange, int magRange,byte[] exg1,byte[] exg2) {
 		mAdapter = BluetoothAdapter.getDefaultAdapter();
 		mState = STATE_NONE;
 		mHandler = handler;
@@ -397,7 +431,7 @@ public class Shimmer extends ShimmerBluetooth {
 			if (mConnectedThread != null) {mConnectedThread.cancel(); mConnectedThread = null;}
 
 			if (address == null) return;
-			Log.d("ConnectionStatus", "Get Local Device  " + address);
+			Log.d("ConnectionStatus","Get Local Device  " + address);
 
 			localDevice = LocalDevice.getInstance();
 			RemoteDevice device = localDevice.getRemoteForAddr(address);
@@ -507,7 +541,7 @@ public class Shimmer extends ShimmerBluetooth {
 	private void connectionFailed() {
 		setState(STATE_NONE);
 		mInitialized = false;
-
+		// Send a failure message back to the Activity
 //		Message msg = mHandler.obtainMessage(MESSAGE_TOAST);
 //		Bundle bundle = new Bundle();
 //		bundle.putString(TOAST, "Unable to connect device");
@@ -534,7 +568,7 @@ public class Shimmer extends ShimmerBluetooth {
 		}
 		setState(STATE_NONE);
 		mInitialized = false;
-
+		// Send a failure message back to the Activity
 //		Message msg = mHandler.obtainMessage(MESSAGE_TOAST);
 //		Bundle bundle = new Bundle();
 //		bundle.putString(TOAST, "Device connection was lost");
@@ -560,7 +594,7 @@ public class Shimmer extends ShimmerBluetooth {
 		public ConnectThread(BluetoothDevice device) {
 			mmDevice = device;
 			BluetoothSocket tmp = null;
-			Log.d(mClassName, "Start of Default ConnectThread");
+			Log.d(mClassName,"Start of Default ConnectThread");
 			// Get a BluetoothSocket for a connection with the
 			// given BluetoothDevice
 			try {
@@ -615,7 +649,7 @@ public class Shimmer extends ShimmerBluetooth {
 
 		public ConnectThreadArduino(RemoteDevice device) {
 			mDevice = device;
-			Log.d(mClassName, " Start of ArduinoConnectThread");
+			Log.d(mClassName," Start of ArduinoConnectThread");
 		}
 
 		public void run() {
@@ -668,14 +702,14 @@ public class Shimmer extends ShimmerBluetooth {
 			}
 
 			catch (Exception e) {
-				Log.d(mClassName, "Connection Failed");
+				Log.d(mClassName,"Connection Failed");
 				//sendConnectionFailed(mDevice.getAddress());
 				connectionFailed();
 				e.printStackTrace();
 				if (mSocket != null)
 					try {
 						mSocket.close();
-						Log.d(mClassName, "Arduinothreadclose");
+						Log.d(mClassName,"Arduinothreadclose");
 					} catch (IOException e1) {}
 
 				return;
@@ -757,7 +791,7 @@ public class Shimmer extends ShimmerBluetooth {
 			try {
 				tmpIn = socket.getInputStream();
 				tmpOut = socket.getOutputStream();
-			} catch (Exception e) { Log.d(mClassName, "Connected Thread Error");
+			} catch (Exception e) { Log.d(mClassName,"Connected Thread Error");
 			connectionLost();}
 
 			//mInStream = new BufferedInputStream(tmpIn);
@@ -777,10 +811,10 @@ public class Shimmer extends ShimmerBluetooth {
 		private void write(byte[] buffer) {
 			try {
 				mmOutStream.write(buffer);
-				Log.d(mClassName, "Command transmitted: " + mMyBluetoothAddress + "; Command Issued: " + mCurrentCommand);
+				Log.d(mClassName, "Command transmitted: " + mMyBluetoothAddress + "; Command Issued: " + mCurrentCommand );
 
 			} catch (IOException e) {
-				Log.d(mClassName, "Command NOT transmitted: " + mMyBluetoothAddress + "; Command Issued: " + mCurrentCommand);
+				Log.d(mClassName, "Command NOT transmitted: " + mMyBluetoothAddress + "; Command Issued: " + mCurrentCommand );
 			}
 		}
 
@@ -832,7 +866,7 @@ public class Shimmer extends ShimmerBluetooth {
 			mInitialized = true;
 		}
 		mHandler.obtainMessage(Shimmer.MESSAGE_STATE_CHANGE, MSG_STATE_FULLY_INITIALIZED, -1, new ObjectCluster(mMyName,getBluetoothAddress())).sendToTarget();
-		Log.d(mClassName, "Shimmer " + mMyBluetoothAddress + " Initialization completed and is ready for Streaming");
+		Log.d(mClassName,"Shimmer " + mMyBluetoothAddress +" Initialization completed and is ready for Streaming");
 	}
 
 	protected void isNowStreaming() {
@@ -842,7 +876,7 @@ public class Shimmer extends ShimmerBluetooth {
 		bundle.putString(TOAST, "Device " + mMyBluetoothAddress + " is now Streaming");
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
-		Log.d(mClassName, "Shimmer " + mMyBluetoothAddress + " is now Streaming");
+		Log.d(mClassName,"Shimmer " + mMyBluetoothAddress +" is now Streaming");
 		mHandler.obtainMessage(Shimmer.MESSAGE_STATE_CHANGE, MSG_STATE_STREAMING, -1, new ObjectCluster(mMyName,getBluetoothAddress())).sendToTarget();
 		
 	}
@@ -1025,7 +1059,7 @@ public class Shimmer extends ShimmerBluetooth {
 	@Override
 	protected void printLogDataForDebugging(String msg) {
 		// TODO Auto-generated method stub
-		Log.d(mClassName, msg);
+		Log.d(mClassName,msg);
 	}
 
 	@Override
@@ -1057,7 +1091,7 @@ public class Shimmer extends ShimmerBluetooth {
 			sensing=0;
 		
 		mHandler.obtainMessage(Shimmer.MESSAGE_LOG_AND_STREAM_STATUS_CHANGED, docked, sensing).sendToTarget();
-		Log.d(mClassName, "Shimmer " + mMyBluetoothAddress + " Status has changed. Docked: " + docked + " Sensing: " + sensing);
+		Log.d(mClassName,"Shimmer " + mMyBluetoothAddress +" Status has changed. Docked: "+docked+" Sensing: "+sensing);
 	}
 
 	@Override

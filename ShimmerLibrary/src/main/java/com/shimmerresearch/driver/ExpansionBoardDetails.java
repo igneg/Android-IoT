@@ -1,4 +1,7 @@
 package com.shimmerresearch.driver;
+
+import com.shimmerresearch.driver.ShimmerVerDetails;
+
 /**
  * Holds the Shimmer's Expansion board information as read from the memory chip
  * on the Shimmers expansion board.
