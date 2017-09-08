@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer;
+package ch.supsi.dti.ssiot.shimmer;
 
 import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
@@ -15,7 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
-import ch.supsi.dti.ssiot2016.shimmer.adapter.TabsFragmentPagerAdapter;
+import ch.supsi.dti.ssiot.shimmer.adapter.TabsFragmentPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

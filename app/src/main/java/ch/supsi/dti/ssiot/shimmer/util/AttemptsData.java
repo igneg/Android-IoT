@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer.util;
+package ch.supsi.dti.ssiot.shimmer.util;
 
 public class AttemptsData {
 

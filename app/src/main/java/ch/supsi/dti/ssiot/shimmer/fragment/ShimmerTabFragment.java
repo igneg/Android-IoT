@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer.fragment;
+package ch.supsi.dti.ssiot.shimmer.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -18,9 +18,9 @@ import com.shimmerresearch.android.Shimmer;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.supsi.dti.ssiot2016.shimmer.MyService;
-import ch.supsi.dti.ssiot2016.shimmer.R;
-import ch.supsi.dti.ssiot2016.shimmer.util.AttemptsData;
+import ch.supsi.dti.ssiot.shimmer.MyService;
+import ch.supsi.dti.ssiot.shimmer.R;
+import ch.supsi.dti.ssiot.shimmer.util.AttemptsData;
 
 public class ShimmerTabFragment extends BaseTabFragment implements DevicesListFragment.OnDeviceSelectedListener{
 

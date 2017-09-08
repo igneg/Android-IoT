@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer.fragment;
+package ch.supsi.dti.ssiot.shimmer.fragment;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -14,8 +14,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.supsi.dti.ssiot2016.shimmer.R;
-import ch.supsi.dti.ssiot2016.shimmer.adapter.PairedDevicesArrayAdapter;
+import ch.supsi.dti.ssiot.shimmer.R;
+import ch.supsi.dti.ssiot.shimmer.adapter.PairedDevicesArrayAdapter;
 
 /**
  * Class used to display bluetooth paired devices

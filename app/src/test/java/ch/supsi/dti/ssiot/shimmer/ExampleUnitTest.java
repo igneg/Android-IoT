@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer;
+package ch.supsi.dti.ssiot.shimmer;
 
 import org.junit.Test;
 

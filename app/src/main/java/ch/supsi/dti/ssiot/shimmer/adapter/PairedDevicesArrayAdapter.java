@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer.adapter;
+package ch.supsi.dti.ssiot.shimmer.adapter;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import ch.supsi.dti.ssiot2016.shimmer.R;
+import ch.supsi.dti.ssiot.shimmer.R;
 
 public class PairedDevicesArrayAdapter extends ArrayAdapter<BluetoothDevice> {
 

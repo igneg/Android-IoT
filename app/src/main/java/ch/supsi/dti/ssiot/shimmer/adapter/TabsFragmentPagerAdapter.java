@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer.adapter;
+package ch.supsi.dti.ssiot.shimmer.adapter;
 
 
 import android.content.Context;
@@ -20,8 +20,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.supsi.dti.ssiot2016.shimmer.R;
-import ch.supsi.dti.ssiot2016.shimmer.fragment.BaseTabFragment;
+import ch.supsi.dti.ssiot.shimmer.R;
+import ch.supsi.dti.ssiot.shimmer.fragment.BaseTabFragment;
 
 public class TabsFragmentPagerAdapter extends FragmentPagerAdapter {
 

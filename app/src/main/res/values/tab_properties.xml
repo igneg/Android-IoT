@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="tabs_package">ch.supsi.dti.ssiot2016.shimmer.fragment</string>
+    <string name="tabs_package">ch.supsi.dti.ssiot.shimmer.fragment</string>
 
     <string-array name="tabs_classes">
         <item>ShimmerTabFragment</item>

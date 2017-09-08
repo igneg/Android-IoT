@@ -1,9 +1,9 @@
-package ch.supsi.dti.ssiot2016.shimmer.fragment;
+package ch.supsi.dti.ssiot.shimmer.fragment;
 
 import android.util.Log;
 import android.view.View;
 
-import ch.supsi.dti.ssiot2016.shimmer.R;
+import ch.supsi.dti.ssiot.shimmer.R;
 
 public class EmptyTabFragment extends BaseTabFragment {
 

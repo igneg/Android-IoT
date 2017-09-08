@@ -1,12 +1,12 @@
-package ch.supsi.dti.ssiot2016.shimmer.fragment;
+package ch.supsi.dti.ssiot.shimmer.fragment;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.shimmerresearch.driver.ObjectCluster;
 
-import ch.supsi.dti.ssiot2016.shimmer.MyService;
-import ch.supsi.dti.ssiot2016.shimmer.R;
+import ch.supsi.dti.ssiot.shimmer.MyService;
+import ch.supsi.dti.ssiot.shimmer.R;
 
 /**
  * Created by Gianluca Costante on 05/09/16.

@@ -1,4 +1,4 @@
-package ch.supsi.dti.ssiot2016.shimmer;
+package ch.supsi.dti.ssiot.shimmer;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.shimmerresearch.android.Shimmer;
 import com.shimmerresearch.driver.ObjectCluster;
 
-import ch.supsi.dti.ssiot2016.shimmer.util.AttemptsData;
+import ch.supsi.dti.ssiot.shimmer.util.AttemptsData;
 
 public class MyService extends Service {
 
